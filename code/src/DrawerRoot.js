@@ -12,9 +12,9 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import MissionsParent from './MissionsParent';
-import DreamsParent from './DreamsParent';
-import CollectionsParent from './CollectionsParent';
+import MissionsParent from './Missions/MissionsParent';
+import DreamsParent from './Dreams/DreamsParent';
+import CollectionsParent from './Collections/CollectionsParent';
 
 function DrawerRoot() {
 
