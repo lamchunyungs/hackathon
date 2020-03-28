@@ -74,8 +74,10 @@ function Home() {
             </DialogTitle>
             <DialogContent
               style={{
+                display: "grid",
                 justifyContent: "center",
-                textAlign: "center"
+                textAlign: "center",
+                gridTemplateColumns: "120px"
               }}
             >
               <Button
@@ -91,7 +93,8 @@ function Home() {
                   fontSize: 30,
                   background: "white",
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                  borderRadius: "20px"
+                  borderRadius: "20px",
+                  placeSelf: "center"
                 }}
               >
                 Missions
@@ -109,7 +112,8 @@ function Home() {
                   background: "white",
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
                   borderRadius: "20px",
-                  marginTop: 30
+                  marginTop: 30,
+                  placeSelf: "center"
                 }}
               >
                 Dreams
@@ -128,7 +132,8 @@ function Home() {
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
                   borderRadius: "20px",
                   marginTop: 30,
-                  marginBottom: 80
+                  marginBottom: 80,
+                  placeSelf: "center"
                 }}
               >
                 Collections
