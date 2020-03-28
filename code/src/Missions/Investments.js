@@ -6,11 +6,9 @@ import Button from '@material-ui/core/Button';
 
 import styled from "styled-components";
 
-import Investments from './Investments';
-import Quiz from './Quiz';
-import Savings from './Savings';
+import Insurance from './Insurance';
 
-function MissionsParent() {
+function Investments() {
     const [child, setChild] = React.useState("menu");
     return (
         <>
@@ -28,7 +26,7 @@ function MissionsParent() {
                         }}
                         disableTypography
                     >
-                        Missions
+                        Investments
             </DialogTitle>
                     <DialogContent
                         style={{
@@ -38,7 +36,7 @@ function MissionsParent() {
                     >
                         <Button
                             onClick={() => {
-                                setChild("savings");
+                                setChild("Insurance");
                             }}
                             variant="contained"
                             style={{
@@ -52,12 +50,12 @@ function MissionsParent() {
                                 borderRadius: "20px"
                             }}
                         >
-                            Savings
+                            Insurance
               </Button>
 
                         <Button
                             onClick={() => {
-                                setChild("investments");
+                                setChild("Fund");
                             }}
                             variant="contained"
                             style={{
@@ -70,38 +68,15 @@ function MissionsParent() {
                                 marginTop: 30
                             }}
                         >
-                            Investment
+                            Fund
               </Button>
 
-                        <Button
-                            onClick={() => {
-                                setChild("quizzes");
-                            }}
-                            variant="contained"
-                            style={{
-                                minWidth: "250px",
-                                minHeight: "80px",
-                                fontSize: 30,
-                                background: "white",
-                                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                                borderRadius: "20px",
-                                marginTop: 30,
-                                marginBottom: 80
-                            }}
-                        >
-                            Quizzes
-              </Button>
+
                     </DialogContent>
                 </div> : null
             }
             {
-                child == "savings" ? <Savings /> : null
-            }
-            {
-                child == "investments" ? <Investments /> : null
-            }
-            {
-                child == "quizzes" ? <Quiz /> : null
+                child == "Insurance" ? <Insurance /> : null
             }
         </>
 
@@ -117,4 +92,4 @@ const ModalBackground = styled.img`
   z-index: -1;
 `;
 
-export default MissionsParent;
+export default Investments;
