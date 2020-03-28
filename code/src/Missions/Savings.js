@@ -8,8 +8,14 @@ import styled from "styled-components";
 
 import Confirm from './Confirm';
 
+import TextField from '@material-ui/core/TextField';
+
 function Savings() {
-    const [child, setChild] = React.useState("menu");
+    const [child, setChild] = React.useState("menu")
+    const [goal, setGoal] = React.useState("")
+    const handleChangeGoal = event => {
+        setGoal(event.target.value);
+    };
     return (
         <>
             {
@@ -34,6 +40,32 @@ function Savings() {
                             textAlign: "center"
                         }}
                     >
+                        <div
+                            style={{
+                                color: "white",
+                                textAlign: "center",
+                                fontSize: "25px",
+                                fontWeight: "300",
+                                marginTop: "20px"
+                            }}>Set up saving goals</div>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="goal"
+                            fullWidth
+                            value={goal}
+                            onChange={handleChangeGoal}
+                            inputProps={{
+                                style: {
+                                    color: "white",
+                                    textAlign: "center",
+                                    fontSize: "25px",
+                                    fontWeight: "300",
+                                    marginTop: "20px"
+                                }
+                            }}
+
+                        />
                         <Button
                             onClick={() => {
                                 setChild("Confirm");
