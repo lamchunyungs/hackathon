@@ -16,6 +16,11 @@ import DreamsParent from "../Dreams/DreamsParent";
 import CollectionsParent from "../Collections/CollectionsParent";
 import { Typography } from "@material-ui/core";
 function Home() {
+  const [amount, setAmount] = React.useState(100000);
+  const handleChangeAmount = (a) => { setAmount(a) }
+  const [health, setHealth] = React.useState(9);
+  const handleChangeHealth = (h) => { setHealth(h) }
+
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     if (!open) {
@@ -131,7 +136,7 @@ function Home() {
             </DialogContent>
           </div>
         ) : null}
-        {child == "missions" ? <MissionsParent /> : null}
+        {child == "missions" ? <MissionsParent handleChangeAmount={handleChangeAmount} handleChangeHealth={handleChangeHealth} /> : null}
         {child == "dreams" ? <DreamsParent /> : null}
         {child == "collections" ? <CollectionsParent /> : null}
       </Dialog>
@@ -156,9 +161,9 @@ function Home() {
       </Background>
       <HeadBar>
         <Coin src={require("../assets/money.svg")} />
-        <Amount>100,000</Amount>
+        <Amount>{amount}</Amount>
         <Health src={require("../assets/heart.svg")} />
-        <HealthLevel>9</HealthLevel>
+        <HealthLevel>{health}</HealthLevel>
       </HeadBar>
       <Character src={require("../assets/elderly.svg")} />
       {modal}

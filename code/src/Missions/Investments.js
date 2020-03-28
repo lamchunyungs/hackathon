@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import Insurance from './Insurance';
 
-function Investments() {
+function Investments({ handleChangeAmount, handleChangeHealth }) {
     const [child, setChild] = React.useState("menu");
     return (
         <>
@@ -76,7 +76,7 @@ function Investments() {
                 </div> : null
             }
             {
-                child == "Insurance" ? <Insurance /> : null
+                child == "Insurance" ? <Insurance handleChangeAmount={handleChangeAmount} handleChangeHealth={handleChangeHealth} /> : null
             }
         </>
 

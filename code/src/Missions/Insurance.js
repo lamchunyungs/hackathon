@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import styled from "styled-components";
 
-function Insurance() {
+function Insurance({ handleChangeAmount, handleChangeHealth }) {
     const [child, setChild] = React.useState("menu");
     return (
         <div style={{ height: "100%", width: "100%" }}>
@@ -52,6 +52,8 @@ function Insurance() {
                 <Button
                     onClick={() => {
                         setChild("Buy");
+                        handleChangeAmount(105000);
+                        handleChangeHealth(99);
                     }}
                     variant="contained"
                     style={{

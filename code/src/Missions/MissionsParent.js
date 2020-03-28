@@ -10,7 +10,7 @@ import Investments from './Investments';
 import Quiz from './Quiz';
 import Savings from './Savings';
 
-function MissionsParent() {
+function MissionsParent({ handleChangeAmount, handleChangeHealth }) {
     const [child, setChild] = React.useState("menu");
     return (
         <>
@@ -98,7 +98,7 @@ function MissionsParent() {
                 child == "savings" ? <Savings /> : null
             }
             {
-                child == "investments" ? <Investments /> : null
+                child == "investments" ? <Investments handleChangeAmount={handleChangeAmount} handleChangeHealth={handleChangeHealth} /> : null
             }
             {
                 child == "quizzes" ? <Quiz /> : null
