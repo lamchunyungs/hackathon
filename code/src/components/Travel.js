@@ -11,7 +11,7 @@ class Travel extends React.Component {
         <FinishBar>
           <Text>Finish</Text>
         </FinishBar>
-        <Character src={require("../assets/elderly_indian.svg")} />
+        <Character src={require("../assets/elderly_travel.svg")} />
       </Layout>
     );
   }

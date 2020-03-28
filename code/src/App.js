@@ -8,7 +8,7 @@ import Travel from "./components/Travel";
 function App() {
   return (
     <div className="App">
-      <Skydive />
+      <Home />
     </div>
   );
 }

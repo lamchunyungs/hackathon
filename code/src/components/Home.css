@@ -1,0 +1,67 @@
+.MenuIcon {
+  width: 45px;
+  height: 45px;
+  margin: 0 16px 0 0;
+  cursor: pointer;
+  transition: all 0.25s ease 0s;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  z-index: 99;
+  background: #577ba6;
+  border-radius: 30px;
+  box-shadow: 0px 5px 40px rbga(0, 0, 0, 0.25);
+}
+.MenuIcon.open {
+  width: 45px;
+  height: 45px;
+  margin: 0 16px 0 0;
+  cursor: pointer;
+  transition: all 0.25s ease 0s;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  z-index: 99;
+  background: #577ba6;
+  border-radius: 30px;
+  box-shadow: 0px 5px 40px rbga(0, 0, 0, 0.25);
+}
+
+.MenuIcon-Line {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 7px;
+  width: 30px;
+  height: 2px;
+  transform: rotate(0deg);
+  background: white;
+  border-radius: 1px;
+  transition: all 0.25s ease 0s;
+}
+
+.MenuIcon-Top {
+  bottom: 22px;
+  transform: translateY(-8px);
+}
+.MenuIcon-Bottom {
+  bottom: 22px;
+  transform: translateY(8px);
+}
+.MenuIcon-Middle {
+  bottom: 22px;
+  transform: translateY(0px);
+}
+.MenuIcon-Bottom.open {
+  height: 2px;
+  transform: rotate(-225deg) translateY(0px);
+}
+.MenuIcon-Middle.open {
+  height: 0px;
+  width: 0px;
+  transform: translateX(100px);
+}
+.MenuIcon-Top.open {
+  height: 2px;
+  transform: rotate(225deg) translateY(0px);
+}
