@@ -6,7 +6,7 @@ class Home extends React.Component {
     return (
       <Layout>
         <Background>
-          <BackgroundImage src={require("../assets/home_bad.png")} />
+          <BackgroundImage src={require("../assets/skydive.png")} />
         </Background>
         <HeadBar>
           <Coin src={require("../assets/money.svg")} />
