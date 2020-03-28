@@ -3,16 +3,12 @@ import React from "react";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-
+import Saved from "./Saved";
+import Correct from "./Correct";
 import styled from "styled-components";
+import Confirm3 from "./Confirm3";
 
-import Insurance from "./Insurance";
-
-function Investments({
-  handleChangeAmount,
-  handleChangeHealth,
-  handleClickOpen
-}) {
+function Confirm2({ handleChangeAmount, handleChangeHealth, handleClickOpen }) {
   const [child, setChild] = React.useState("menu");
   return (
     <>
@@ -30,59 +26,48 @@ function Investments({
             }}
             disableTypography
           >
-            Investments
+            Savings
           </DialogTitle>
           <DialogContent
             style={{
               display: "grid",
               justifyContent: "center",
-              gridTemplateColumns: "120px",
+              gridTemplateColumns: "auto",
               textAlign: "center"
             }}
           >
+            <ProductName> Monthly Goal: $2000</ProductName>
+            <img
+              src={require("../assets/bar_chart_half.svg")}
+              style={{ height: "300px", width: "100px", placeSelf: "center" }}
+            />
             <Button
               onClick={() => {
-                setChild("Insurance");
+                setChild("refresh");
               }}
               variant="contained"
               style={{
-                marginTop: 60,
-                marginLeft: 0,
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
+                width: "100px",
+                height: "30px",
+                fontSize: 14,
                 background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                placeSelf: "center"
-              }}
-            >
-              Insurance
-            </Button>
 
-            <Button
-              onClick={() => {
-                setChild("Fund");
-              }}
-              variant="contained"
-              style={{
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
-                background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                marginTop: 30,
+                borderRadius: "14px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 20,
                 placeSelf: "center"
               }}
             >
-              Fund
+              <span>Refresh</span>
             </Button>
           </DialogContent>
         </div>
       ) : null}
-      {child == "Insurance" ? (
-        <Insurance
+      {child == "refresh" ? (
+        <Confirm3
           handleChangeAmount={handleChangeAmount}
           handleChangeHealth={handleChangeHealth}
           handleClickOpen={handleClickOpen}
@@ -100,4 +85,9 @@ const ModalBackground = styled.img`
   z-index: -1;
 `;
 
-export default Investments;
+const ProductName = styled.div`
+  color: white;
+  font-size: 26px;
+  font-weight: 300;
+`;
+export default Confirm2;

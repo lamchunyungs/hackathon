@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 import Insurance from "./Insurance";
 
-function Investments({
+function BoughtInsurance({
   handleChangeAmount,
   handleChangeHealth,
   handleClickOpen
@@ -40,53 +40,37 @@ function Investments({
               textAlign: "center"
             }}
           >
+            <CorrectText>Thank you for purchasing;)</CorrectText>
+            <HeadBar>
+              <Amount>Rewards: </Amount>
+              <Coin src={require("../assets/money.svg")} />
+              <Amount>100000</Amount>
+            </HeadBar>
             <Button
               onClick={() => {
-                setChild("Insurance");
+                handleChangeAmount(100000);
+                handleClickOpen();
               }}
               variant="contained"
               style={{
-                marginTop: 60,
-                marginLeft: 0,
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
+                width: "100px",
+                height: "30px",
+                fontSize: 14,
                 background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                placeSelf: "center"
-              }}
-            >
-              Insurance
-            </Button>
 
-            <Button
-              onClick={() => {
-                setChild("Fund");
-              }}
-              variant="contained"
-              style={{
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
-                background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                marginTop: 30,
+                borderRadius: "14px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 20,
                 placeSelf: "center"
               }}
             >
-              Fund
+              <span>Okay</span>
             </Button>
           </DialogContent>
         </div>
-      ) : null}
-      {child == "Insurance" ? (
-        <Insurance
-          handleChangeAmount={handleChangeAmount}
-          handleChangeHealth={handleChangeHealth}
-          handleClickOpen={handleClickOpen}
-        />
       ) : null}
     </>
   );
@@ -100,4 +84,31 @@ const ModalBackground = styled.img`
   z-index: -1;
 `;
 
-export default Investments;
+export default BoughtInsurance;
+const CorrectText = styled.div`
+  color: white;
+  font-size: 36px;
+  font-weight: 500;
+  width: 300px;
+  padding: 20px;
+  place-self: center;
+  margin-top: 80px;
+`;
+const HeadBar = styled.div`
+  height: 30px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-self: center;
+`;
+
+const Coin = styled.img`
+  margin-left: 5px;
+  height: 17px;
+  width: 17px;
+`;
+const Amount = styled.text`
+  margin-left: 3px;
+  color: white;
+`;

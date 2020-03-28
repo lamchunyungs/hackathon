@@ -1,101 +1,109 @@
-import React from 'react';
+import React from "react";
 
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
 
 import styled from "styled-components";
 
-import Confirm from './Confirm';
+import Confirm from "./Confirm";
 
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 
-function Savings() {
-    const [child, setChild] = React.useState("menu")
-    const [goal, setGoal] = React.useState("")
-    const handleChangeGoal = event => {
-        setGoal(event.target.value);
-    };
-    return (
-        <>
-            {
-                child == "menu" ? <div style={{ height: "100%", width: "100%" }}>
-                    <ModalBackground src={require("../assets/custom_modal.svg")} />
-                    <DialogTitle
-                        id="alert-dialog-title"
-                        style={{
-                            color: "white",
-                            textAlign: "center",
-                            fontSize: "40px",
-                            fontWeight: "300",
-                            marginTop: "20px"
-                        }}
-                        disableTypography
-                    >
-                        Savings
-            </DialogTitle>
-                    <DialogContent
-                        style={{
-                            justifyContent: "center",
-                            textAlign: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                color: "white",
-                                textAlign: "center",
-                                fontSize: "25px",
-                                fontWeight: "300",
-                                marginTop: "20px"
-                            }}>Set up saving goals</div>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="goal"
-                            fullWidth
-                            value={goal}
-                            onChange={handleChangeGoal}
-                            inputProps={{
-                                style: {
-                                    color: "white",
-                                    textAlign: "center",
-                                    fontSize: "25px",
-                                    fontWeight: "300",
-                                    marginTop: "20px"
-                                }
-                            }}
+function Savings({ handleChangeAmount, handleChangeHealth, handleClickOpen }) {
+  const [child, setChild] = React.useState("menu");
+  const [goal, setGoal] = React.useState("");
+  const handleChangeGoal = event => {
+    setGoal(event.target.value);
+  };
+  return (
+    <>
+      {child == "menu" ? (
+        <div style={{ height: "100%", width: "100%" }}>
+          <ModalBackground src={require("../assets/custom_modal.svg")} />
+          <DialogTitle
+            id="alert-dialog-title"
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontSize: "40px",
+              fontWeight: "300",
+              marginTop: "20px"
+            }}
+            disableTypography
+          >
+            Savings
+          </DialogTitle>
+          <DialogContent
+            style={{
+              display: "grid",
+              justifyContent: "center",
+              gridTemplateColumns: "250px",
+              textAlign: "center"
+            }}
+          >
+            <div
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: "25px",
+                fontWeight: "300",
+                marginTop: "60px"
+              }}
+            >
+              Set up saving goals
+            </div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="goal"
+              fullWidth
+              value={goal}
+              onChange={handleChangeGoal}
+              inputProps={{
+                style: {
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  fontWeight: "300",
+                  marginTop: "20px"
+                }
+              }}
+            />
+            <Button
+              onClick={() => {
+                setChild("confirm");
+              }}
+              variant="contained"
+              style={{
+                width: "100px",
+                height: "30px",
+                fontSize: 14,
+                background: "white",
 
-                        />
-                        <Button
-                            onClick={() => {
-                                setChild("Confirm");
-                            }}
-                            variant="contained"
-                            style={{
-                                marginTop: 60,
-                                marginLeft: 0,
-                                width: "250px",
-                                minHeight: "80px",
-                                fontSize: 30,
-                                background: "white",
-                                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                                borderRadius: "20px"
-                            }}
-                        >
-                            Confirm
-              </Button>
-
-
-                    </DialogContent>
-                </div> : null
-            }
-            {
-                child == "Confirm" ? <Confirm /> : null
-            }
-        </>
-
-
-    );
+                borderRadius: "14px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 50,
+                placeSelf: "center"
+              }}
+            >
+              <span>Confirm</span>
+            </Button>
+          </DialogContent>
+        </div>
+      ) : null}
+      {child == "confirm" ? (
+        <Confirm
+          handleChangeAmount={handleChangeAmount}
+          handleChangeHealth={handleChangeHealth}
+          handleClickOpen={handleClickOpen}
+        />
+      ) : null}
+    </>
+  );
 }
 const ModalBackground = styled.img`
   position: absolute;

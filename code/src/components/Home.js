@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import DrawerRoot from "../DrawerRoot";
 import "./Home.css";
 
@@ -16,11 +16,18 @@ import DreamsParent from "../Dreams/DreamsParent";
 import CollectionsParent from "../Collections/CollectionsParent";
 import { Typography } from "@material-ui/core";
 function Home() {
-  const [amount, setAmount] = React.useState(100000);
-  const handleChangeAmount = (a) => { setAmount(a) }
+  const [amount, setAmount] = React.useState(0);
+  const handleChangeAmount = a => {
+    setAmount(a);
+  };
   const [health, setHealth] = React.useState(9);
-  const handleChangeHealth = (h) => { setHealth(h) }
-
+  const handleChangeHealth = h => {
+    setHealth(h);
+  };
+  const [scene, setScene] = React.useState("home_bad");
+  const handleChangeScene = h => {
+    setScene(h);
+  };
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     if (!open) {
@@ -50,7 +57,8 @@ function Home() {
             height: "80vh",
             width: "80vh",
             background: "none",
-            boxShadow: "none"
+            boxShadow: "none",
+            overflow: "hidden"
           }
         }}
         aria-labelledby="alert-dialog-title"
@@ -90,7 +98,7 @@ function Home() {
                   marginLeft: 0,
                   width: "250px",
                   minHeight: "80px",
-                  fontSize: 30,
+                  fontSize: 26,
                   background: "white",
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
                   borderRadius: "20px",
@@ -108,7 +116,7 @@ function Home() {
                 style={{
                   width: "250px",
                   minHeight: "80px",
-                  fontSize: 30,
+                  fontSize: 26,
                   background: "white",
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
                   borderRadius: "20px",
@@ -127,7 +135,7 @@ function Home() {
                 style={{
                   minWidth: "250px",
                   minHeight: "80px",
-                  fontSize: 30,
+                  fontSize: 26,
                   background: "white",
                   boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
                   borderRadius: "20px",
@@ -141,36 +149,90 @@ function Home() {
             </DialogContent>
           </div>
         ) : null}
-        {child == "missions" ? <MissionsParent handleChangeAmount={handleChangeAmount} handleChangeHealth={handleChangeHealth} /> : null}
-        {child == "dreams" ? <DreamsParent /> : null}
+        {child == "missions" ? (
+          <MissionsParent
+            handleChangeAmount={handleChangeAmount}
+            handleChangeHealth={handleChangeHealth}
+            handleClickOpen={handleClickOpen}
+          />
+        ) : null}
+        {child == "dreams" ? (
+          <DreamsParent
+            handleChangeAmount={handleChangeAmount}
+            handleChangeHealth={handleChangeHealth}
+            handleClickOpen={handleClickOpen}
+            handleChangeScene={handleChangeScene}
+          />
+        ) : null}
         {child == "collections" ? <CollectionsParent /> : null}
       </Dialog>
     );
   }
   return (
     <Layout>
-      <div className="MenuIcon" id="menu-icon" onClick={handleClickOpen}>
-        <span className="MenuIcon-Line MenuIcon-Top" id="menu-line-top"></span>
-        <span
-          className="MenuIcon-Line MenuIcon-Middle"
-          id="menu-line-middle"
-        ></span>
-        <span
-          className="MenuIcon-Line MenuIcon-Bottom"
-          id="menu-line-bottom"
-        ></span>
-      </div>
-
+      >
+      {scene === "home_bad" || scene === "home_good" ? (
+        <div className="MenuIcon" id="menu-icon" onClick={handleClickOpen}>
+          <span
+            className="MenuIcon-Line MenuIcon-Top"
+            id="menu-line-top"
+          ></span>
+          <span
+            className="MenuIcon-Line MenuIcon-Middle"
+            id="menu-line-middle"
+          ></span>
+          <span
+            className="MenuIcon-Line MenuIcon-Bottom"
+            id="menu-line-bottom"
+          ></span>
+        </div>
+      ) : null}
       <Background>
-        <BackgroundImage src={require("../assets/home_good.png")} />
+        {scene == "home_bad" ? (
+          <BackgroundImage src={require("../assets/home_bad.png")} />
+        ) : null}
+        {scene == "home_good" ? (
+          <BackgroundImage src={require("../assets/home_good.png")} />
+        ) : null}
+        {scene == "travel" ? (
+          <TravelBackgroundImage src={require("../assets/travel.png")} />
+        ) : null}
+        {scene == "skydive" ? (
+          <SkydiveBackgroundImage src={require("../assets/skydive.png")} />
+        ) : null}
       </Background>
-      <HeadBar>
-        <Coin src={require("../assets/money.svg")} />
-        <Amount>{amount}</Amount>
-        <Health src={require("../assets/heart.svg")} />
-        <HealthLevel>{health}</HealthLevel>
-      </HeadBar>
-      <Character src={require("../assets/elderly.svg")} />
+      <div>
+        >
+        {scene === "home_bad" || scene === "home_good" ? (
+          <HeadBar>
+            <Coin src={require("../assets/money.svg")} />
+            <Amount>{amount}</Amount>
+            <Health src={require("../assets/heart.svg")} />
+            <HealthLevel>{health}</HealthLevel>
+          </HeadBar>
+        ) : (
+          <FinishBar
+            onClick={() => {
+              setScene("home_good");
+            }}
+          >
+            Finish
+          </FinishBar>
+        )}
+      </div>
+      >
+      {scene === "home_bad" ? (
+        <Character src={require("../assets/elderly.svg")} />
+      ) : null}
+      {scene === "home_good" ? (
+        <Character src={require("../assets/elderly.svg")} />
+      ) : null}
+      {scene === "travel" ? (
+        <TravelCharacter src={require("../assets/elderly_travel.svg")} />
+      ) : null}
+      {scene === "skydive" ? (
+        <SkydiveCharacter src={require("../assets/elderly_skydive.svg")} />
+      ) : null}
       {modal}
     </Layout>
   );
@@ -180,6 +242,7 @@ export default Home;
 const Layout = styled.div`
   height: 100vh;
   width: 100vw;
+  position: relative;
   overflow: hidden;
 `;
 
@@ -189,14 +252,77 @@ const Background = styled.div`
   width: 200vw;
   overflow: hidden;
 `;
+const easeIn = keyframes`
+from {
+  opacity: 0;
+}
+to{
+  opacity: 1;
+}
+`;
 
-const BackgroundImage = styled.img`
+const MyImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: ${easeIn};
+  animation-duration: 5s;
+  animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+`;
+const BackgroundImage = styled(MyImage)`
+  opacity: 0;
+  height: 105%;
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  @media (max-width: 425px) {
+    transform: translateX(0px);
+  }
+`;
+const TravelBackgroundImage = styled(MyImage)`
+  opacity: 0;
   height: 100%;
-  width: 400 px;
-  transform: translateX(-100px) translateY(-5px);
+  width: 100%;
+  @media (max-width: 425px) {
+    transform: translateX(-50%) translateY(-5px);
+  }
   overflow: hidden;
 `;
 
+const TravelCharacter = styled.img`
+  height: 462px;
+  width: 368px;
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+`;
+
+const SkydiveBackgroundImage = styled(MyImage)`
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`;
+const floating = keyframes`
+0% {
+  transform: translateX(0px);
+  transform: translateY(0px);
+}
+50%{
+  transform: translateX(10px);
+  transform: translateY(30px);
+}
+`;
+const SkydiveCharacter = styled.img`
+  height: 462px;
+  width: 368px;
+  position: absolute;
+  bottom: 120px;
+  left: 10px;
+  animation: ${floating} 2s linear infinite;
+`;
 const Character = styled.img`
   height: 462px;
   width: 368px;
@@ -205,6 +331,21 @@ const Character = styled.img`
   left: 30px;
 `;
 
+const FinishBar = styled.div`
+  height: 30px;
+  width: 100px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+`;
+const Text = styled.span``;
 const HeadBar = styled.div`
   height: 30px;
   width: 180px;

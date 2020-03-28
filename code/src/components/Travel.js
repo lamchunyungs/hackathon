@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-class Travel extends React.Component {
-  render() {
-    return (
-      <Layout>
-        <Background>
-          <BackgroundImage src={require("../assets/travel.png")} />
-        </Background>
-        <FinishBar>
-          <Text>Finish</Text>
-        </FinishBar>
-        <Character src={require("../assets/elderly_travel.svg")} />
-      </Layout>
-    );
-  }
+function Travel({ handleChangeScene }) {
+  return (
+    <Layout>
+      <Background>
+        <BackgroundImage src={require("../assets/travel.png")} />
+      </Background>
+      <FinishBar onClick={handleChangeScene("home")}>
+        <Text>Finish</Text>
+      </FinishBar>
+      <Character src={require("../assets/elderly_travel.svg")} />
+    </Layout>
+  );
 }
 
 export default Travel;
@@ -66,6 +64,7 @@ const FinishBar = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+  cursor: pointer;
   top: 15px;
   right: 30px;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);

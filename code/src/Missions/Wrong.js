@@ -7,12 +7,9 @@ import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 
 import Insurance from "./Insurance";
+import Quiz from "./Quiz";
 
-function Investments({
-  handleChangeAmount,
-  handleChangeHealth,
-  handleClickOpen
-}) {
+function Wrong({ handleChangeAmount, handleChangeHealth, handleClickOpen }) {
   const [child, setChild] = React.useState("menu");
   return (
     <>
@@ -30,7 +27,7 @@ function Investments({
             }}
             disableTypography
           >
-            Investments
+            Quiz
           </DialogTitle>
           <DialogContent
             style={{
@@ -40,53 +37,45 @@ function Investments({
               textAlign: "center"
             }}
           >
-            <Button
-              onClick={() => {
-                setChild("Insurance");
-              }}
-              variant="contained"
-              style={{
-                marginTop: 60,
-                marginLeft: 0,
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
-                background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                placeSelf: "center"
-              }}
-            >
-              Insurance
-            </Button>
+            <CorrectTitle>Wrong;(</CorrectTitle>
+            <CorrectText>
+              Savings insurance not just protects your health but also your
+              wealth!(
+            </CorrectText>
 
             <Button
               onClick={() => {
-                setChild("Fund");
+                setChild("retry");
               }}
               variant="contained"
               style={{
-                width: "250px",
-                minHeight: "80px",
-                fontSize: 26,
+                maxWidth: "200px",
+                height: "30px",
+                fontSize: 14,
                 background: "white",
-                boxShadow: "0px 4px 100px rbga(0,0,0,0.25)",
-                borderRadius: "20px",
-                marginTop: 30,
+
+                borderRadius: "14px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 20,
                 placeSelf: "center"
               }}
             >
-              Fund
+              <span>Try Again</span>
             </Button>
           </DialogContent>
         </div>
       ) : null}
-      {child == "Insurance" ? (
-        <Insurance
+      {child == "retry" ? (
+        <Quiz
           handleChangeAmount={handleChangeAmount}
           handleChangeHealth={handleChangeHealth}
-          handleClickOpen={handleClickOpen}
-        />
+          handleClickOpen
+        >
+          ={handleClickOpen}>
+        </Quiz>
       ) : null}
     </>
   );
@@ -100,4 +89,38 @@ const ModalBackground = styled.img`
   z-index: -1;
 `;
 
-export default Investments;
+export default Wrong;
+const CorrectTitle = styled.div`
+  color: white;
+  font-size: 36px;
+  font-weight: 500;
+  width: 300px;
+  place-self: center;
+  margin-top: 30px;
+`;
+const CorrectText = styled.div`
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  width: 280px;
+  place-self: center;
+  padding: 20px;
+`;
+const HeadBar = styled.div`
+  height: 30px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-self: center;
+`;
+
+const Coin = styled.img`
+  margin-left: 5px;
+  height: 17px;
+  width: 17px;
+`;
+const Amount = styled.text`
+  margin-left: 3px;
+  color: white;
+`;
